@@ -1,0 +1,208 @@
+/* #region Imports*/
+@import url('https://fonts.googleapis.com/css2?family=Geostar+Fill&display=swap');
+/* #endregion Imports*/
+
+/* #region global*/
+/* https://css-tricks.com/box-sizing/ */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+* {
+    margin:0px;
+    padding:0px;
+}
+
+:root {
+    --main-section-color: #20bf6b;
+    --display-color: #eb3b5a;
+    
+}
+/* #endregion global*/
+
+/* #region body */
+body{
+    background-color: rgb(240, 240, 240);
+    color: rgb(50, 50, 50);
+}
+/* #endregion body */
+
+/* #region header */
+header{
+    background-color: var(--main-section-color);
+    max-width: 95%;
+    margin: auto;
+
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+header h1{
+    font-size: 2.5em;
+    font-size: 400%;
+    font-style: italic;
+    font-weight: bold;
+    
+    color: white;
+
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
+    text-align: center;
+    text-transform: uppercase;
+    
+    line-height: 1.1em;
+    letter-spacing: 0.1em;
+    word-spacing: 1em;
+
+    margin: 0;
+    border: 0px;
+    padding: 0;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+
+    clear: both;
+    display: flex;
+    justify-content: center;
+
+}
+/* #endregion header */
+
+/* #region main*/
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+/* #endregion main*/
+
+/* #region footer */
+footer{
+    font-size: 120%;
+
+    background-color: var(--main-section-color);
+    color: rgb(240, 240, 240);
+    text-align: center;
+
+    max-width: 95%;
+    min-height: 4rem;
+
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0rem;
+
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 2px 2px 2px gray;
+}
+/* #endregion footer */
+
+/* #region segment display */
+.display_margin,
+.display_border{
+    border: 5px solid var(--main-section-color);
+    padding: 5px;
+}
+
+.display_padding{
+    background-color: rgb(50, 50, 50);
+    
+}
+.display_padding h1{
+    color: var(--display-color);
+    text-align: center;
+    font-size: 400%;
+    font-family: 'Geostar Fill', cursive;
+}
+/* #endregion segment display */
+
+/* #region numpad */
+.numpad{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    padding: 0.2rem;
+    border: black solid;
+}
+
+.numpad_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.05rem;
+}
+
+.numpad_row div{
+    width: 6rem;
+    height: 6rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+.numpad_row div:hover{
+    opacity: 1;
+}
+
+#keyL{ background-image: url("../img/key_empty.png"); }
+#keyR{ background-image: url("../img/key_empty.png"); }
+#key0{ background-image: url("../img/key_0.png"); }
+#key1{ background-image: url("../img/key_1.png"); }
+#key2{ background-image: url("../img/key_2.png"); }
+#key3{ background-image: url("../img/key_3.png"); }
+#key4{ background-image: url("../img/key_4.png"); }
+#key5{ background-image: url("../img/key_5.png"); }
+#key6{ background-image: url("../img/key_6.png"); }
+#key7{ background-image: url("../img/key_7.png"); }
+#key8{ background-image: url("../img/key_8.png"); }
+#key9{ background-image: url("../img/key_9.png"); }
+/* #endregion numpad */
+
+/* #region lock*/
+#lockSign{
+    width: 20rem;
+    height: 20rem;
+    background-image: url(../img/lock.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* #endregion lock*/
+
+/* #region battery*/
+.batteryCompartment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    padding: 0.2rem;
+    border: black solid;
+}
+.batteryCompartment{
+    height: 30rem;
+    background-image: url(../img/bat_background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.batteryCompartment_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.05rem;
+}
+
+.battery{
+    transform: rotate(90deg);
+    height: 5rem;
+}
+/* #endregion battery*/

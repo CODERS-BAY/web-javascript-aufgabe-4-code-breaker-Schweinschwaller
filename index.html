@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet" />
+    <title>Code Breaker by Georg Schweinschwaller</title>
+</head>
+
+<body>
+    <header>
+        <h1>Code</h1>
+        <h1>Breaker</h1>
+    </header>
+    <main>
+        <article>
+            <div class="display_margin">
+                <div class="display_border">
+                    <div class="display_padding">
+                        <h1 id="segment_display">* * *</h1>
+                    </div>
+                </div>
+            </div>
+            <section>
+                <div class="numpad">
+                    <div class="numpad_row">
+                        <div id="key7"></div>
+                        <div id="key8"></div>
+                        <div id="key9"></div>
+                    </div>
+                    <div class="numpad_row">
+                        <div id="key4"></div>
+                        <div id="key5"></div>
+                        <div id="key6"></div>
+                    </div>
+                    <div class="numpad_row">
+                        <div id="key1"></div>
+                        <div id="key2"></div>
+                        <div id="key3"></div>
+                    </div>
+                    <div class="numpad_row">
+                        <div id="keyL"></div>
+                        <div id="key0"></div>
+                        <div id="keyR"></div>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <article>
+            <section>
+                <div id="lockSign"></div>
+            </section>
+        </article>
+        <article>
+            <div class="batteryCompartment">
+                <div class="batteryCompartment_row">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                </div>
+                <div class="batteryCompartment_row">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                </div>
+                <div class="batteryCompartment_row">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                </div>
+                <div class="batteryCompartment_row">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                </div>
+                <div class="batteryCompartment_row">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                    <img src="./img/battery.png" alt="battery" class="battery">
+                </div>
+            </div>
+        </article>
+    </main>
+    <aside></aside>
+    <footer>
+        <p>In this game you have to guess a 3 digit code. Reset=click on the lock. Batterys=lives</p>
+    </footer>
+</body>
+<script>
+    //####################################//
+    //   Battery(Trys)                    //
+    //####################################//
+    var battery = document.getElementsByClassName("battery");
+    var trys = battery.length;
+    function setBattery() {
+        for (i = 0; i < battery.length; i++) {
+            if (trys >= i) {
+                battery[i].style.display = "flex";
+            } else {
+                battery[i].style.display = "none";
+            }
+        }
+    }
+    //####################################//
+    //   Lock                             //
+    //####################################//
+    var lockSign = document.getElementById("lockSign");
+    lockSign.addEventListener("click", start);
+    //####################################//
+    //   The Code                         //
+    //####################################//
+    var display = document.getElementById("segment_display");
+    var theCode = new Array(0, 0, 0);
+    var codeIdx = 0;
+
+    start();
+
+    function newCode() {
+        codeIdx = 0;
+        for (i = 0; i < theCode.length; i++) {
+            theCode[i] = Math.ceil(Math.random() * 9);
+            console.log(theCode[i]);
+        }
+        trys = battery.length;
+        display.innerText = "* * *";
+    }
+    function found() {
+        let help = "";
+        for (i = 0; i < theCode.length; i++) {
+            if (i <= codeIdx) {
+                help = help + theCode[i].toString();
+            } else {
+                help = help + "*";
+            }
+        }
+        display.innerText = help;
+        codeIdx++;
+        if (codeIdx >= theCode.length) {
+            lockSign.style.backgroundImage = "url(../img/unlock.png)";
+        }
+    }
+    function start(event) {
+        lockSign.style.backgroundImage = "url(../img/lock.png)";
+        display.innerText = "* * *";
+        newCode();
+        setBattery();
+    }
+    //####################################//
+    //   NumPad                           //
+    //####################################//
+    var keyL = document.getElementById("keyL"); keyL.addEventListener("click", numpad);
+    var keyR = document.getElementById("keyR"); keyR.addEventListener("click", numpad);
+    var key0 = document.getElementById("key0"); key0.addEventListener("click", numpad);
+    var key1 = document.getElementById("key1"); key1.addEventListener("click", numpad);
+    var key2 = document.getElementById("key2"); key2.addEventListener("click", numpad);
+    var key3 = document.getElementById("key3"); key3.addEventListener("click", numpad);
+    var key4 = document.getElementById("key4"); key4.addEventListener("click", numpad);
+    var key5 = document.getElementById("key5"); key5.addEventListener("click", numpad);
+    var key6 = document.getElementById("key6"); key6.addEventListener("click", numpad);
+    var key7 = document.getElementById("key7"); key7.addEventListener("click", numpad);
+    var key8 = document.getElementById("key8"); key8.addEventListener("click", numpad);
+    var key9 = document.getElementById("key9"); key9.addEventListener("click", numpad);
+
+    function numpad(event) {
+        if (event.target.id == "keyL") {
+            console.log(theCode.toString());
+            trys--;
+        } else if (event.target.id == "keyR") {
+            console.log(theCode.toString());
+            trys--;
+        } else if (event.target.id == "key0") {
+            if (theCode[codeIdx] == 0) { found(); } else { trys--; }
+        } else if (event.target.id == "key1") {
+            if (theCode[codeIdx] == 1) { found(); } else { trys--; }
+        } else if (event.target.id == "key2") {
+            if (theCode[codeIdx] == 2) { found(); } else { trys--; }
+        } else if (event.target.id == "key3") {
+            if (theCode[codeIdx] == 3) { found(); } else { trys--; }
+        } else if (event.target.id == "key4") {
+            if (theCode[codeIdx] == 4) { found(); } else { trys--; }
+        } else if (event.target.id == "key5") {
+            if (theCode[codeIdx] == 5) { found(); } else { trys--; }
+        } else if (event.target.id == "key6") {
+            if (theCode[codeIdx] == 6) { found(); } else { trys--; }
+        } else if (event.target.id == "key7") {
+            if (theCode[codeIdx] == 7) { found(); } else { trys--; }
+        } else if (event.target.id == "key8") {
+            if (theCode[codeIdx] == 8) { found(); } else { trys--; }
+        } else if (event.target.id == "key9") {
+            if (theCode[codeIdx] == 9) { found(); } else { trys--; }
+        }
+        setBattery();
+    }
+
+
+
+
+
+
+
+</script>
+
+</html>
