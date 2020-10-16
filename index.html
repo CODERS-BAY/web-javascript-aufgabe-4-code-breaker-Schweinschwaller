@@ -161,9 +161,10 @@
     var key7 = document.getElementById("key7"); key7.addEventListener("click", numpad);
     var key8 = document.getElementById("key8"); key8.addEventListener("click", numpad);
     var key9 = document.getElementById("key9"); key9.addEventListener("click", numpad);
-
+// console.log(key7);
     function numpad(event) {
-        if (event.target.id == "keyL") {
+        console.log('event ' + event);
+        if (event.target.id == "keyL" || event.id == "keyL") {
             console.log(theCode.toString());
             trys--;
         } else if (event.target.id == "keyR") {
@@ -183,7 +184,7 @@
             if (theCode[codeIdx] == 5) { found(); } else { trys--; }
         } else if (event.target.id == "key6") {
             if (theCode[codeIdx] == 6) { found(); } else { trys--; }
-        } else if (event.target.id == "key7") {
+        } else if (event.target.id == "key7" || event.id == "key7") {
             if (theCode[codeIdx] == 7) { found(); } else { trys--; }
         } else if (event.target.id == "key8") {
             if (theCode[codeIdx] == 8) { found(); } else { trys--; }
@@ -193,12 +194,26 @@
         setBattery();
     }
 
-
-
-
-
-
-
+    //####################################//
+    //   Keyboard - NumPad                //
+    //####################################//
+    window.addEventListener("keydown", keyboardHandle);
+    
+    function keyboardHandle(event){
+        console.log(event.key);
+        switch (event.key){
+            case '0': numpad(event("key0"));  break;
+            case 97: numpad("key1");  break;
+            case 98: numpad("key2");  break;
+            case 99: numpad("key3");  break;
+            case 100: numpad("key4"); break;
+            case 101: numpad("key5"); break;
+            case 102: numpad("key6"); break;
+            case "7": key7.dispatchEvent(numpad(new Event(key7))); break;
+            case 104: numpad("key8"); break;
+            case 105: numpad("key9"); break;
+        }
+    }
 </script>
 
 </html>
